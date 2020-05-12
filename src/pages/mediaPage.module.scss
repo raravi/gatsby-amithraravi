@@ -1,0 +1,188 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/spacers";
+
+.pageTitle {
+  h2 {
+    margin-top: 0;
+  }
+}
+
+.pageContent {
+}
+
+/* ==========================================================================
+   Tiles
+   ========================================================================== */
+
+.articlesTiles {
+  //border: 1px solid black;  /* For debugging */
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  .col {
+    display: flex;
+    flex-direction: column;
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 8px;
+    .ad {
+      height: 400px; // 481px to 600px
+      width: 400px;
+      .infeed {
+        height: 100%;
+        width: 100%;
+      }
+    }
+    @media screen and (max-width: 360px) {
+      .ad {
+        height: 250px;
+        width: 260px;
+      }
+    }
+    @media screen and (min-width: 361px) and (max-width: 420px) {
+      .ad {
+        height: 300px;
+        width: 300px;
+      }
+    }
+    @media screen and (min-width: 421px) and (max-width: 480px) {
+      .ad {
+        height: 350px;
+        width: 350px;
+      }
+    }
+    @media screen and (min-width: 601px) and (max-width: 650px) {
+      .ad {
+        height: 300px;
+        width: 250px;
+      }
+    }
+    @media screen and (min-width: 651px) and (max-width: 700px) {
+      .ad {
+        height: 300px;
+        width: 270px;
+      }
+    }
+    @media screen and (min-width: 701px) and (max-width: 750px) {
+      .ad {
+        height: 300px;
+        width: 300px;
+      }
+    }
+    @media screen and (min-width: 751px) and (max-width: 800px) {
+      .ad {
+        height: 300px;
+        width: 320px;
+      }
+    }
+    @media screen and (min-width: 801px) and (max-width: 900px) {
+      .ad {
+        height: 320px;
+        width: 350px;
+      }
+    }
+    @media screen and (min-width: 901px) and (max-width: 1000px) {
+      .ad {
+        height: 320px;
+        width: 260px;
+      }
+    }
+    @media screen and (min-width: 1001px) and (max-width: 1060px) {
+      .ad {
+        height: 320px;
+        width: 290px;
+      }
+    }
+    @media screen and (min-width: 1061px) and (max-width: 1120px) {
+      .ad {
+        height: 320px;
+        width: 310px;
+      }
+    }
+    @media screen and (min-width: 1121px) {
+      .ad {
+        height: 320px;
+        width: 255px;
+      }
+    }
+    .articleTile {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-bottom: 25px;
+      &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+          0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        .postTitle {
+          color: $cg-red;
+        }
+        .postTeaser {
+          &:after {
+            background: rgba($base-color, 0.05);
+          }
+        }
+      }
+      a {
+        text-decoration: none;
+      }
+      .entryDate, .postTitle, .postExcerpt {
+        padding: 0 10px;
+      }
+      .postTeaser {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        width: 100%;
+        position: relative;
+        display: block;
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0;
+          background: rgba($base-color, 0);
+          pointer-events: none;
+          @include transition(background 0.3s);
+        }
+      }
+      .entryDate {
+        margin-top: 10px;
+        @include font-size(12, no);
+        color: lighten($text-color, 25);
+      }
+      .postTitle {
+        margin-top: 4px;
+        @include font-size(20, no);
+        color: $text-color;
+      }
+      .postExcerpt {
+        margin-top: 10px;
+        @include font-size(14);
+        color: $text-color;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .col {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+    .col {
+      flex: 49%; // There is a side-effect to figure out here!! This should ideally be 50%. But right now, 50% will not display items in 2nd column properly on Firefox.
+      max-width: 49%;
+    }
+  }
+  @media screen and (min-width: 901px) and (max-width: 1120px) {
+    .col {
+      flex: 33%;
+      max-width: 33%;
+    }
+  }
+}

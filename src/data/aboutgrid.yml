@@ -1,0 +1,32 @@
+# AboutGrid
+- title: Editorial Services
+  excerpt:
+  - node1:
+      skills: Book Editing
+      points:
+      - node2: Copyediting
+      - node2: Developmental Editing
+      - node2: Proofreading Services
+      - node2: Organisation and Content
+      - node2: Plot and Pacing
+  - node1:
+      skills: Research Articles
+      points:
+      - node2: Manuscript Formatting
+      - node2: Plagiarism Check
+      - node2: Journal Submissions
+- title: Writing Services
+  excerpt:
+  - node1:
+      skills: Content Writing
+      points:
+      - node2: Article writing
+      - node2: Blog writing
+      - node2: Social Media writing
+      - node2: SEO Copywriting
+  - node1:
+      skills: Technical Writing
+      points:
+      - node2: Product Documentation
+      - node2: Help Resources
+      - node2: How To's

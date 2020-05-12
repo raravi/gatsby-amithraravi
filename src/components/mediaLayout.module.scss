@@ -1,0 +1,64 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/buttons";
+@import "../sass/base";
+@import "../sass/spacers";
+
+.mainbar {
+  float: left;
+  width: 100%;
+  @include media($medium) {
+    width: 75%;
+  }
+}
+.sidebar {
+  float: left;
+  width: 100%;
+  @include media($medium) {
+    width: 25%;
+  }
+  padding: 10px;
+  .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    div {
+      .bioPic {
+        width: 100%;
+        border-radius: 50%;
+      }
+    }
+  }
+  .text {
+    text-align: center;
+    .sayHi {
+      @include font-size(20, no);
+      font-family: $hi-font;
+      color: $cg-red;
+    }
+    .sayHiText {
+      @include font-size(18, yes, 24);
+      @include media($medium) {
+        @include font-size(16, yes, 24);
+      }
+    }
+    a {
+      @include font-size(16, no);
+      text-decoration: none;
+    }
+  }
+  .bloggerResources {
+    a {
+      @include font-size(14, no);
+      font-family: $blogger-resources-font;
+      color: $text-color;
+      text-decoration: none;
+      &:hover {
+        color: $cg-red;
+      }
+    }
+  }
+}

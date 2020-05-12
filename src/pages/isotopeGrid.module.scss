@@ -1,0 +1,90 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/buttons";
+
+/* ==========================================================================
+   Isotope
+   ========================================================================== */
+
+.isChecked,
+.tech,
+.personal {
+  padding: 0 8px;
+}
+
+/* ---- button ---- */
+
+.filtersButton {
+  background: $white;
+  color: $cg-red;
+  border: none;
+  position: relative;
+  height:30px;
+  font-size:0.9em;
+  @include media($micro350) {
+    font-size: 1.1em;
+    height:40px;
+  }
+  padding: 0 1em;
+  cursor: pointer;
+  transition: 800ms ease all;
+  outline: none;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+.filtersButton:before,
+.filtersButton:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 2px;
+  width: 100%;
+  background: $cg-red;
+  transition: 200ms ease all;
+}
+.filtersButton:after {
+  right: inherit;
+  top: inherit;
+  left: 0;
+  bottom: 0;
+}
+.filtersButton:hover {
+  background: #ffeded;
+  transition: 400ms ease all;
+}
+.filtersButton:hover:before,
+.filtersButton:hover:after {
+  height: 3px;
+  transition: 400ms ease all;
+}
+
+.filtersButton:active,
+.filtersButton.isChecked {
+  background-color: $cg-red;
+  text-decoration: none;
+}
+
+.filtersButton.isChecked {
+  color: white;
+  text-shadow: 0 -1px hsla(0, 0%, 0%, 0.4);
+}
+
+.filtersButton:active {
+  box-shadow: inset 0 1px 10px hsla(0, 0%, 0%, 0.8);
+}
+
+.filtersButtonGroup {
+  display: inline-block;
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.filtersButtonGroup:after {
+  content: "";
+  display: block;
+  clear: both;
+}

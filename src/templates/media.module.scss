@@ -1,0 +1,84 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/spacers";
+
+.mediaSection {
+  @include media($small) {
+    @include span-columns(11);
+  }
+  @include media($medium) {
+    @include span-columns(10);
+  }
+  @include media($medium1050) {
+    @include span-columns(9);
+  }
+  padding-top: 0px;
+}
+.pageContent {
+  @include fill-parent;
+  // larger font for intro paragraph
+  > p {
+    &:first-child {
+      @include font-size(20, yes, 30);
+    }
+  }
+  div > p {
+    &:first-child {
+      @include font-size(20, yes, 30);
+    }
+  }
+  // cleaner underlines for links
+  a {
+    text-decoration: none;
+  }
+  p a,
+  li a {
+    border-bottom: 1px dotted lighten($link-color, 50);
+    &:hover {
+      border-bottom-style: solid;
+    }
+  }
+  p > a.reversefootnote {
+    border-bottom-width: 0;
+  }
+  .toc li > a {
+    border-bottom-width: 0;
+  }
+  .page-footer,
+  .pagination {
+    @include fill-parent;
+  }
+  .page-meta {
+    p {
+      @include font-size(14, no);
+      font-family: $alt-font;
+      color: lighten($black, 60);
+    }
+  }
+  .image-credit {
+    padding: 10px 15px;
+    font-family: $alt-font;
+    @include font-size(14, no);
+  }
+}
+
+/* ==========================================================================
+   Breadcrumb navigation
+   ========================================================================== */
+
+.breadcrumbs {
+  padding-bottom: 30px;
+  @include row;
+  margin-top: $gutter;
+  @include font-size(16, no);
+  a {
+    display: inline-block;
+    font-family: $alt-font;
+    font-weight: 700;
+    text-align: left;
+    text-transform: uppercase;
+  }
+}

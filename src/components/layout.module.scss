@@ -1,0 +1,509 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/buttons";
+@import "../sass/base";
+@import "../sass/spacers";
+
+.headerSection,
+.mainSection,
+.footerSection {
+  @include outer-container;
+}
+
+.headerSection {
+  padding: ($gutter/1.5) $gutter;
+  z-index: 5;
+  @include transform(translate(0, 0));
+  @include transition(500ms cubic-bezier(0.645, 0.045, 0.355, 1));
+  &.slide {
+    @include transform(translate(-1600px, 0));
+  }
+}
+
+.mainSection {
+  padding: 0 $gutter;
+}
+
+.footerSection {
+  padding: $gutter;
+  margin-top: (3 * (0px + $doc-line-height));
+  margin-top: (3 * (0rem + ($doc-line-height / $doc-font-size)));
+}
+
+.header,
+.footer {
+  @include clearfix;
+}
+
+.siteTitle {
+  text-transform: uppercase;
+  @include span-columns(11);
+  @include media($medium800) {
+    @include span-columns(4);
+  }
+  padding: (0.25 * $masthead-height) 0;
+  height: $masthead-height;
+  text-decoration: none;
+  color: $black;
+  font-family: $alt-font;
+  font-weight: 700;
+  @include font-size(28, no);
+  line-height: 0.5 * $masthead-height;
+}
+
+.menu {
+  position: relative;
+}
+
+.topMenu {
+  margin-top: 0;
+  list-style: none;
+  width: 480px;
+  position: absolute;
+  right: 0px;
+  display: none;
+  @include media($medium800) {
+    display: block;
+  }
+}
+
+.bottomMenu {
+  padding-left: 0;
+  margin-top: 0;
+  list-style: none;
+}
+
+.topMenuItemLink {
+  float: left;
+  font-weight: 700;
+  @include font-size(16, no);
+  margin-right: $gutter;
+  padding: (0.3 * $masthead-height) 0 (0.25 * $masthead-height);
+  height: $masthead-height;
+  font-family: $alt-font;
+  text-transform: uppercase;
+  text-decoration: none;
+  position: relative;
+  a {
+    color: $black;
+    &:hover {
+      color: $black;
+    }
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    @include transition(width 0.3s);
+  }
+  &:before {
+    width: 100%;
+    background: transparent;
+  }
+  &:after {
+    width: 0;
+    background: $red;
+  }
+  &:active:after,
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+.bottomMenuItemLink {
+  float: left;
+  font-weight: 700;
+  @include font-size(16, no);
+  margin-right: $gutter;
+  padding: (0.25 * $masthead-height) 0 (0.25 * $masthead-height);
+  height: $masthead-height;
+  font-family: $alt-font;
+  color: lighten($black, 60);
+  text-decoration: none;
+  position: relative;
+  &:hover {
+    color: lighten($black, 60);
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 4px;
+    @include transition(width 0.3s);
+  }
+  &:before {
+    width: 100%;
+    background: transparent;
+  }
+  &:after {
+    width: 0;
+    background: $red;
+  }
+  &:active:after,
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+.copyright {
+  padding-top: 10px;
+  font-family: $alt-font;
+  @include font-size(12);
+  color: lighten($black, 60);
+  a {
+    color: lighten($black, 60);
+    text-decoration: none;
+    &:hover {
+      color: $cg-red;
+    }
+  }
+}
+
+/* ==========================================================================
+   OFF CANVAS SLIDING MENU
+   Based on code by Diego Eis
+   http://tableless.com.br/fazendo-um-slide-menu-mobile-sem-plugin/
+   ========================================================================== */
+
+/*
+   Sliding menu button
+   ========================================================================== */
+
+.slidingMenuButton {
+  position: fixed;
+  transform: translateZ(0);
+  backface-visibility: hidden; /* fix scroll jank */
+  top: $gutter * 1.5;
+  right: $gutter * 2;
+  display: block;
+  width: $button-size * 1.6;
+  height: $button-size * 1.6;
+  @include media($micro350) {
+    top: $gutter * 1.4;
+    width: $button-size * 1.75;
+    height: $button-size * 1.75;
+  }
+  @include media($small450) {
+    top: $gutter * 1.25;
+    width: $button-size * 2;
+    height: $button-size * 2;
+  }
+  background: $primary-color;
+  outline: 0;
+  padding: 0;
+  border: 2.5px solid transparent;
+  cursor: pointer;
+  z-index: 20;
+  box-sizing: border-box;
+  &:hover {
+    background: $black;
+  }
+  transition: $sliding-menu-animation;
+  &.slide {
+    background: $danger-color;
+    transform: translateX(
+      0
+    ); /* don't slide close button on small screens only */
+    @include media($medium) {
+      transform: translateX(em(-870)); /* reset slide position */
+    }
+    @include media($large) {
+      transform: translateX(em(-1300)); /* reset slide position */
+    }
+  }
+}
+
+/*
+   Sliding content
+   ========================================================================== */
+.slidingMenuContent {
+  position: fixed;
+  top: 0;
+  right: 0;
+  padding: em(22) 0;
+  visibility: hidden;
+  backface-visibility: hidden;
+  text-align: left;
+  @include size(100% 100%);
+  @include media($small) {
+    width: em(600);
+  }
+  @include media($large) {
+    width: em(900);
+  }
+  transform: translateX(100%);
+  transition: $sliding-menu-animation;
+  background: $sliding-menu-background;
+  z-index: 20;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  &.isVisible {
+    visibility: visible;
+    transform: translateX(0);
+  }
+  h5 {
+    margin: 0 20% 0 10%;
+    @include media($large) {
+      margin-right: 20%;
+    }
+    color: $white;
+    @include font-size(14);
+    @include media($small) {
+      @include font-size(18);
+    }
+    span {
+      padding-top: 10px;
+      display: block;
+      @include font-size(32, no, 1);
+      @include media($small) {
+        @include font-size(48, no, 1);
+      }
+      font-family: $base-font;
+      text-transform: uppercase;
+      font-weight: 400;
+    }
+  }
+  ul {
+    margin: 0 10%;
+    @include media($large) {
+      margin-right: 20%;
+    }
+  }
+  ul,
+  li {
+    list-style: none;
+  }
+  li {
+    display: block;
+    position: relative;
+    padding-bottom: 1em;
+    min-height: 70px;
+    @include media($small) {
+      min-height: 100px;
+    }
+  }
+  .sub-menu-item > li a {
+    display: block;
+    color: $white;
+    font-style: italic;
+  }
+  .menuItem .home a {
+    @include font-size(32);
+  }
+}
+
+.menuItem {
+  a {
+    display: block;
+    color: $white;
+    &:hover {
+      color: $white;
+    }
+    text-decoration: none;
+  }
+  a:hover .teaser {
+    opacity: 1;
+  }
+}
+
+.teaser {
+  position: absolute;
+  left: 0;
+  margin-bottom: 0;
+  width: 100px;
+  border: 2px solid $white;
+  margin-bottom: ($gutter / 2);
+  opacity: 0.6;
+  @include media($small) {
+    width: 150px;
+  }
+}
+
+.title {
+  display: block;
+  margin-left: 110px;
+  font-family: $alt-font;
+  @include font-size(24, no);
+  font-weight: 700;
+  @include media($small) {
+    margin-left: 170px;
+    @include font-size(32, no);
+  }
+}
+
+.excerpt {
+  margin-top: 0;
+  margin-left: 110px;
+  @include font-size(14, no);
+  @include media($small) {
+    margin-left: 170px;
+    @include font-size(16, no);
+  }
+}
+
+/* Dim content when off canvas nav slides in */
+
+.menuScreen {
+  @include position(fixed, 0 0 0 0);
+  visibility: hidden;
+  z-index: 4;
+  &.isVisible {
+    visibility: visible;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+/* ==========================================================================
+   ANIMATED 3 LINE NAVICONS
+   https://github.com/SaraSoueidan/navicon-transformicons
+   ========================================================================== */
+
+/* Common to all three-liners */
+
+@mixin line {
+  display: inline-block;
+  width: $button-size * 0.7;
+  @include media($micro350) {
+    width: $button-size * 0.8;
+  }
+  @include media($small450) {
+    width: $button-size;
+  }
+  height: $button-size/10;
+  background: $white;
+  transition: $transition;
+}
+
+.navLines {
+  @include line;
+  position: relative;
+  &:before,
+  &:after {
+    @include line;
+    position: absolute;
+    left: 0;
+    content: "";
+    transform-origin: $button-size/15 center;
+  }
+  &:before {
+    top: $button-size/4;
+  }
+  &:after {
+    top: -$button-size/4;
+  }
+}
+
+.linesButton:hover {
+  .navLines {
+    &:before {
+      top: -$button-size/15;
+    }
+    &:after {
+      top: $button-size/15;
+    }
+  }
+}
+
+/* For both the arrow up and left icons */
+
+.linesButton.arrow.close {
+  .navLines {
+    &:before,
+    &:after {
+      top: 0;
+      width: $button-size/1.8;
+    }
+    &:before {
+      transform: rotate3d(0, 0, 1, 40deg);
+    }
+    &:after {
+      transform: rotate3d(0, 0, 1, -40deg);
+    }
+  }
+}
+
+/* Arrow up only: just rotate by 90degrees */
+
+.linesButton.arrow-up.close {
+  transform: scale3d(0.8, 0.8, 0.8) rotate3d(0, 0, 1, 90deg);
+}
+
+/* Three-lines to minus only */
+
+.linesButton.minus.close {
+  .navLines {
+    &:before,
+    &:after {
+      transform: none;
+      top: 0;
+      width: $button-size;
+    }
+  }
+}
+
+/* Three-lines to x */
+
+.linesButton.x.close {
+  .navLines {
+    background: transparent;
+    &:before,
+    &:after {
+      transform-origin: 50% 50%;
+      top: 0;
+      width: $button-size;
+    }
+    &:before {
+      transform: rotate3d(0, 0, 1, 45deg);
+    }
+    &:after {
+      transform: rotate3d(0, 0, 1, -45deg);
+    }
+  }
+}
+
+/* Three-lines to x method 2 */
+
+.linesButton.x2 {
+  .navLines {
+    transition: background 0.3s 0.5s ease;
+    &:before,
+    &:after {
+      /* set transform origin */
+      transform-origin: 50% 50%;
+      transition: top 0.3s 0.6s ease, -webkit-transform 0.3s ease;
+      transition: top 0.3s 0.6s ease, transform 0.3s ease;
+    }
+  }
+}
+.linesButton.x2.close {
+  .navLines {
+    transition: background 0.3s 0s ease;
+    background: transparent;
+    &:before,
+    &:after {
+      transition: top 0.3s ease, -webkit-transform 0.3s 0.5s ease; /* delay the formation of the x till the minus is formed */
+      transition: top 0.3s ease, transform 0.3s 0.5s ease; /* delay the formation of the x till the minus is formed */
+      top: 0;
+      width: $button-size;
+    }
+    &:before {
+      transform: rotate3d(0, 0, 1, 45deg);
+    }
+    &:after {
+      transform: rotate3d(0, 0, 1, -45deg);
+    }
+  }
+}

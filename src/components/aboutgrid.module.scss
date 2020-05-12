@@ -1,0 +1,24 @@
+@import "../../node_modules/bourbon/app/assets/stylesheets/bourbon";
+@import "../../node_modules/bourbon-neat/app/assets/stylesheets/neat";
+@import "../mixins/fontsize";
+
+@import "../sass/variables";
+@import "../sass/buttons";
+@import "../sass/base";
+
+/* Create two equal columns that floats next to each other */
+.twoColumn {
+  float: left;
+  width: 100%;
+  @include media($small) {
+    width: 50%;
+  }
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.gridrow:after {
+  content: "";
+  display: block;
+  clear: both;
+}
