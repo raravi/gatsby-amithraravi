@@ -36,12 +36,5 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^5.2.1",
     "rehype-react": "^3.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/gatsbyjs/gatsby-starter-hello-world"
-  },
-  "bugs": {
-    "url": "https://github.com/gatsbyjs/gatsby/issues"
   }
 }
