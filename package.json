@@ -18,7 +18,7 @@
     "bourbon": "^4.3.4",
     "bourbon-neat": "^1.9.1",
     "classnames": "^2.2.6",
-    "gatsby": "^2.21.23",
+    "gatsby": "^2.21.33",
     "gatsby-cli": "^2.12.21",
     "gatsby-plugin-react-helmet": "^3.3.1",
     "gatsby-plugin-sass": "^2.3.1",
